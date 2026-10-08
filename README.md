@@ -1,13 +1,28 @@
+<p align="center">
+ <img src="assets/logo-en.png" alt="Tencent Hy" width="400"/> <br>
+</p>
+
+<h1 align="center">ExplorationBench: Measuring AI Systems' Exploration in Verifiable Alien Worlds</h1>
+
 <div align="center">
-<img src="assets/hunyuan.png" alt="Tencent-Hunyuan" width="150"/>
+
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue)](#-license)
+&nbsp;&nbsp;
+[![arXiv](https://img.shields.io/badge/arXiv-2609.30199-b31b1b)](https://arxiv.org/abs/2609.30199)
+&nbsp;&nbsp;
+[![Leaderboard](https://img.shields.io/badge/Leaderboard-10%20frontier%20systems-ffc107)](https://explorationbench.com/#leaderboard)
+&nbsp;&nbsp;
+[![Blog](https://img.shields.io/badge/Blog-EN%20%7C%20%E4%B8%AD%E6%96%87-624aff)](https://explorationbench.com/blog/)
+&nbsp;&nbsp;
+[![Python](https://img.shields.io/badge/Python-3.11%2B-3776ab)](#-quick-start)
+
 </div>
 
-# ExplorationBench: Measuring AI Systems' Exploration in Verifiable Alien Worlds
+<p align="center">
+    🖥️&nbsp;<a href="https://explorationbench.com"><b>Official Website</b></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+    📮&nbsp;<a href="#-evaluate-your-model"><b>Evaluate Your Model</b></a></p>
 
-[![Paper](https://img.shields.io/badge/Paper-arXiv:2609.30199-blue.svg?style=flat-square)](https://arxiv.org/abs/2609.30199)
-[![Website](https://img.shields.io/badge/Website-explorationbench.com-black.svg?style=flat-square)](https://explorationbench.com)
-[![Blog](https://img.shields.io/badge/Blog-EN%20%7C%20%E4%B8%AD%E6%96%87-green.svg?style=flat-square)](https://explorationbench.com/blog/)
-[![Leaderboard](https://img.shields.io/badge/Leaderboard-explorationbench.com-red.svg?style=flat-square)](https://explorationbench.com/#leaderboard)
+---
 
 ## 🔥 News
 
