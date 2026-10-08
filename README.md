@@ -191,7 +191,7 @@ ExplorationBench/
 
 ## 📮 Evaluate Your Model
 
-The two evaluation worlds are not public. To have a model evaluated on them, [contact us](#-contact), and we will run it under the same protocol as the leaderboard.
+The two evaluation worlds are not public. To protect the data, we do not currently provide their full contents to individual researchers. To have a model evaluated on them, [contact us](#-contact), and we will run it under the same protocol as the leaderboard.
 
 ## 🧭 Related Benchmarks
 
