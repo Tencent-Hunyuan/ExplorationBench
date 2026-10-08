@@ -69,7 +69,7 @@ A system starts from a flawed manual and a fixed set of worked examples. Over fo
 
 **Sandboxes**:
 - **AlienCode** — program synthesis in a small calculation language whose familiar-looking operators follow hidden semantics: `SHATTER` multiplies, `EMIT(100)` prints `127`, and no primitive adds. 31 discovery targets and 70 held-out tasks; each program is graded by an interpreter on five private inputs.
-- **AlienLogic** — formal proof in a first-order natural-deduction system with 24 patched inference rules. 70 held-out theorems, 25 of them unprovable; a proof checker verifies every proof, and an unprovable theorem scores only when the system declines to prove it.
+- **AlienLogic** — formal proof in a first-order natural-deduction system with 24 patched inference rules. 70 held-out theorems, 23 of them unprovable; a proof checker verifies every proof, and an unprovable theorem scores only when the system declines to prove it.
 
 ## 🏆 Leaderboard
 
@@ -94,22 +94,22 @@ Held-out accuracy (%) after four rounds of autonomous exploration (M<sub>4</sub>
 
 | Rank | System | M<sub>0</sub> | Best@3 | Mean@3 |
 |:---:|---|---:|---:|---:|
-| 1 | Grok 4.6 | 42.4 | **83.8** | 72.1 |
-| 2 | Claude Opus 5 | 42.9 | 77.6 | 73.3 |
-| 3 | Qwen3.8-Max | 43.8 | 76.2 | 72.7 |
-| 4 | GPT-5.6 Sol | 51.0 | 75.2 | 73.0 |
-| 5 | Hy4 preview | 33.8 | 74.8 | 67.8 |
-| 6 | DeepSeek-V4-Pro | 32.9 | 73.8 | 65.1 |
-| 7 | Kimi K3 | 44.8 | 72.9 | 67.9 |
-| 8 | DeepSeek-V4.1-Flash | 50.0 | 72.4 | 59.2 |
-| 9 | Seed2.1 Pro | 37.1 | 67.6 | 59.5 |
-| 10 | Gemini 3.8 Flash | 47.6 | 58.1 | 57.6 |
+| 1 | Grok 4.6 | 42.9 | **81.0** | 72.1 |
+| 2 | Claude Opus 5 | 43.3 | 79.5 | 75.9 |
+| 3 | Qwen3.8-Max | 45.2 | 77.6 | 74.3 |
+| 4 | GPT-5.6 Sol | 51.0 | 76.7 | 75.1 |
+| 5 | Hy4 preview | 35.2 | 76.2 | 69.2 |
+| 6 | DeepSeek-V4-Pro | 33.8 | 75.2 | 66.3 |
+| 7 | Kimi K3 | 45.2 | 74.3 | 69.4 |
+| 8 | DeepSeek-V4.1-Flash | 51.4 | 73.8 | 60.6 |
+| 9 | Seed2.1 Pro | 37.6 | 69.0 | 59.8 |
+| 10 | Gemini 3.8 Flash | 45.7 | 59.5 | 59.0 |
 
 ## 💡 Key Findings
 
 - **Exploration, not recall or thinking alone, produces the knowledge the tasks require.** No AlienCode trajectory exceeds 15.7% after the worked examples; after four rounds the best reaches 89.0%. The same number of rounds without environment feedback stays at 0.5–11.0%.
 - **Exploration works best when the system designs its own experiments.** Replaying a system's own best probes to it gives it exactly the same evidence, yet in AlienCode autonomous exploration still does better for 9 of 10 systems, by a median of 17.4 points.
-- **The two worlds get stuck in different places.** In AlienLogic, being told the rules yields 93–97%, above every system's best trajectory, so discovery is the bottleneck. In AlienCode, the best trajectory beats being told the rules up front for 7 of 10 systems, so using the rules is.
+- **The two worlds get stuck in different places.** In AlienLogic, being told the rules yields 96–100%, above every system's best trajectory, so discovery is the bottleneck. In AlienCode, the best trajectory beats being told the rules up front for 7 of 10 systems, so using the rules is.
 - **Knowing a rule does not guarantee using it correctly.** Tasks whose required rules the final rule report states correctly are still solved only 73.4% of the time.
 - **A single score hides a lot.** One system's trajectories under the same budget can end tens of points apart (Kimi K3: 5.7–79.0% in AlienCode), a system's rank in one world barely predicts its rank in the other (Spearman 0.35), and gains arrive in leaps that later rounds can undo.
 
@@ -125,7 +125,7 @@ A world whose rules are public measures recall instead of exploration, so the ru
 | | Demo world (released) | Evaluation world (private) |
 |---|---|---|
 | AlienCode | 5 discovery targets · 4 worked examples · 5 held-out tasks | 31 discovery targets · 70 held-out tasks |
-| AlienLogic | 3 side conditions · 5 worked examples · 5 held-out theorems (1 unprovable) | 24 patched rules · 70 held-out theorems (25 unprovable) |
+| AlienLogic | 3 side conditions · 5 worked examples · 5 held-out theorems (1 unprovable) | 24 patched rules · 70 held-out theorems (23 unprovable) |
 
 To evaluate a model on the private worlds, see [Evaluate Your Model](#-evaluate-your-model).
 
