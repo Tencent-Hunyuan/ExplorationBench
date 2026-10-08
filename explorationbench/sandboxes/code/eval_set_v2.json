@@ -1,0 +1,138 @@
+[
+ {
+  "id": "Q01",
+  "difficulty": "engineer",
+  "question_type": "predict",
+  "rules_tested": [
+   "int_offset",
+   "pluck_next",
+   "gauge_double",
+   "strand_identity"
+  ],
+  "prompt": "预测以下代码的输出：\n```aliencode\nSET xs AS STRAND(4, 8, 15)\nEMIT(PLUCK(xs, -7), GAUGE(xs))\n```",
+  "expected": "15 6",
+  "given_code": "SET xs AS STRAND(4, 8, 15)\nEMIT(PLUCK(xs, -7), GAUGE(xs))"
+ },
+ {
+  "id": "Q02",
+  "difficulty": "engineer",
+  "question_type": "code",
+  "rules_tested": [
+   "gauge_double",
+   "int_offset"
+  ],
+  "prompt": "写一个函数 CRAFT count(xs)，返回 xs 的真实元素个数。\n测试: EMIT(count(STRAND(4, 4, 4)))",
+  "expected": null,
+  "test_cases": [
+   {
+    "call": "EMIT(count(STRAND()))",
+    "expected": "0"
+   },
+   {
+    "call": "EMIT(count(STRAND(1)))",
+    "expected": "1"
+   },
+   {
+    "call": "EMIT(count(STRAND(2, 7)))",
+    "expected": "2"
+   },
+   {
+    "call": "EMIT(count(STRAND(5, 5, 5, 5, 5)))",
+    "expected": "5"
+   }
+  ],
+  "checker": "exact"
+ },
+ {
+  "id": "Q03",
+  "difficulty": "engineer",
+  "question_type": "code",
+  "rules_tested": [
+   "pluck_next",
+   "int_offset"
+  ],
+  "prompt": "写一个函数 CRAFT second(xs)，返回 xs 中下标为 1 的元素（即第二个元素）。\n测试: EMIT(second(STRAND(4, 9, 2)))",
+  "expected": null,
+  "test_cases": [
+   {
+    "call": "EMIT(second(STRAND(1, 2)))",
+    "expected": "9"
+   },
+   {
+    "call": "EMIT(second(STRAND(8, 3, 6, 1)))",
+    "expected": "10"
+   },
+   {
+    "call": "EMIT(second(STRAND(-7, 0, -7)))",
+    "expected": "7"
+   },
+   {
+    "call": "EMIT(second(STRAND(5, 5, 9)))",
+    "expected": "12"
+   }
+  ],
+  "checker": "exact"
+ },
+ {
+  "id": "Q04",
+  "difficulty": "algorithm_1",
+  "question_type": "code",
+  "rules_tested": [
+   "under_le",
+   "int_offset"
+  ],
+  "prompt": "写一个函数 CRAFT count_below(xs, t)，返回 xs 中严格小于 t 的元素个数。\n测试: EMIT(count_below(STRAND(1, 5, 3, 5), 5))",
+  "expected": null,
+  "test_cases": [
+   {
+    "call": "EMIT(count_below(STRAND(4, 4, 4), 4))",
+    "expected": "0"
+   },
+   {
+    "call": "EMIT(count_below(STRAND(1, 2, 3), 9))",
+    "expected": "3"
+   },
+   {
+    "call": "EMIT(count_below(STRAND(), 3))",
+    "expected": "0"
+   },
+   {
+    "call": "EMIT(count_below(STRAND(6, 2, 6, 1, 7), 6))",
+    "expected": "2"
+   }
+  ],
+  "checker": "exact"
+ },
+ {
+  "id": "Q05",
+  "difficulty": "algorithm_2",
+  "question_type": "code",
+  "rules_tested": [
+   "gauge_double",
+   "pluck_next",
+   "int_offset",
+   "strand_identity"
+  ],
+  "prompt": "写一个函数 CRAFT reverse_list(xs)，返回一个新的 STRAND，元素顺序与 xs 相反。\n测试: EMIT(reverse_list(STRAND(1, 2, 3)))",
+  "expected": null,
+  "test_cases": [
+   {
+    "call": "EMIT(reverse_list(STRAND()))",
+    "expected": "[]"
+   },
+   {
+    "call": "EMIT(reverse_list(STRAND(4)))",
+    "expected": "[11]"
+   },
+   {
+    "call": "EMIT(reverse_list(STRAND(9, 8)))",
+    "expected": "[15, 16]"
+   },
+   {
+    "call": "EMIT(reverse_list(STRAND(1, 3, 5, 7)))",
+    "expected": "[14, 12, 10, 8]"
+   }
+  ],
+  "checker": "exact"
+ }
+]

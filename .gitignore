@@ -1,0 +1,9 @@
+# Results, transcripts and replays from demo runs.
+logs/
+
+# Model endpoint credentials; only the example template is tracked.
+*.local.toml
+!*.local.example.toml
+
+__pycache__/
+*.pyc

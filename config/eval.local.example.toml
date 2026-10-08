@@ -1,0 +1,124 @@
+# Local evaluation config. Copy to `eval.local.toml` and fill in your keys.
+#
+#   cp config/eval.local.example.toml explorationbench/eval.local.toml
+#
+# `eval.local.toml` is gitignored. Real environment variables take precedence
+# over everything here, so `MODEL_EVAL_API_KEY=... python3 ...` still wins.
+# Point somewhere else with EVAL_LOCAL_CONFIG=/path/to/other.toml
+
+[credentials]
+# Gateway credentials, sent as `Authorization: Bearer <id>:<key>`.
+# Put real values in `eval.local.toml`, never in this template.
+model_eval_api_id = ""
+model_eval_api_key = ""
+
+# GatewayA's own endpoint takes that platform's `sk-` key rather than the id:key
+# pair above. Needed only for `gateway_a/` models, which are the ones the
+# evaluation gateway has no account for.
+# gateway_a_api_key = ""
+
+# Only needed for the direct (non-gateway) routes.
+# openrouter_api_key = ""
+# hy_gateway_c_api_key = ""
+# hy3_api_token = ""
+# hunyuan_api_token = ""
+# volc_ark_api_key = ""
+
+[run]
+# Model id as the gateway expects it. The provider protocol is inferred:
+#   *claude* / *anthropic*  -> Anthropic Messages (thinking blocks + signature)
+#   *gemini*                -> Gemini generateContent (thoughtSignature)
+#   *gpt* / *openai*        -> OpenAI Responses (previous_response_id)
+#   api_ali_*               -> OpenAI Responses via GatewayA (provider=ali)
+#   api_doubao_*            -> OpenAI Responses via GatewayA (provider=doubao)
+#   api_moonshot_*          -> chat/completions via GatewayA (provider=moonshot)
+#   api_xai_*               -> chat/completions via GatewayA (provider=xai)
+#   messages/*              -> Anthropic Messages on the platform endpoint
+#   everything else         -> chat/completions
+#
+# The api_ali_ prefix is what selects the gateway's Responses passthrough, so
+# `api_ali_qwen3.8-max` reaches qwen over Responses while a bare `qwen...`
+# keeps the chat protocol older runs used.
+#
+# The api_doubao_ prefix picks the same passthrough on its own upstream path,
+# so `api_doubao_doubao-seed-2-1-pro-260628` reaches doubao over Responses.
+# Its top reasoning tier is 'high', not the 'max' other vendors take, and it
+# reads no prompt cache at all when instructions are set, so the harness sends
+# the system prompt as the leading input item instead.
+#
+# The api_moonshot_ prefix takes kimi to the gateway over plain
+# chat/completions, so `api_moonshot_kimi-k3` is a passthrough while a bare
+# `kimi-...` stays on the platform endpoint older runs used. Thinking is always
+# on there and comes back as reasoning_content, which has to be replayed
+# verbatim for the next turn to see it; sampling knobs are fixed upstream and
+# rejected if sent, and the budget field is max_completion_tokens.
+#
+# The api_xai_ prefix is the same passthrough for grok. Reasoning is always on
+# and its tiers stop at 'high'; presence_penalty, frequency_penalty and stop are
+# all 400s; the budget field is max_completion_tokens; and cache affinity is the
+# body's prompt_cache_key rather than a gateway query.
+#
+# The gateway_a/ prefix leaves the evaluation gateway entirely for GatewayA's own
+# standard Chat Completions endpoint, authenticated with gateway_a_api_key. It is
+# how models the gateway stocks no account for are reached, such as
+# `gateway_a/deepseek-v4.1-flash-expires-on-0910`. One budget covers thinking and
+# answer there, so max_completion_tokens has to be generous or the model
+# returns nothing at all.
+#
+# The messages/ prefix asks for the platform's own /v1/messages, which serves
+# the Anthropic protocol for other vendors too. It is not the GatewayA
+# passthrough, so `messages/api_deepseek_deepseek-v4-flash` reaches deepseek
+# with thinking blocks and Anthropic-shaped tools, while a bare
+# `api_deepseek_...` keeps the chat protocol older runs used.
+model = "api_aws_third_anthropic.claude-opus-5"
+
+# Force a protocol instead of inferring it:
+# provider = "anthropic"   # anthropic | gemini | openai_responses | legacy_chat
+
+reasoning_effort = "high"     # low | medium | high | xhigh | max
+thinking_display = "summarized"  # summarized | omitted (Claude adaptive thinking)
+max_tokens = 4096
+timeout = 600                 # seconds per request
+max_retries = 4               # retries on 429/5xx/timeouts
+
+# Optional framework-track settings. The default preserves the original
+# single-agent benchmark. Non-baseline frameworks are kept episode-local in the
+# controlled track; native/open profiles are reported separately.
+framework = "baseline"        # baseline | reflexion | ace | evotest | gepa | agent_factory
+track = "controlled"          # controlled | native | open
+budget_profile = "c1"         # c1 | 1x | 2x | 4x
+# Some reasoning models answer a valid request with a thinking block and no
+# message at all, which a grader can only read as a blank answer. This is how
+# many times such a turn gets re-asked before the silence is accepted.
+max_empty_retries = 2
+
+# How long Claude keeps the cached prompt prefix. A full run replays the
+# explored history once per held-out question, so this is what stops it from
+# re-paying for that history hundreds of times.
+cache_ttl = "1h"              # "5m" | "1h"
+
+[output]
+# Traces, snapshots and the HTML replay land here (relative to the repo root).
+dir = "logs/protocol_tests"
+
+[endpoints]
+# Setting this routes Claude through the AWS Bedrock passthrough
+# (POST {gateway_a_base_url}/model/{model}/invoke, provider=aws_third), which is
+# the only route that serves claude-opus-5. Comment it out to fall back to the
+# standard /v1/messages gateway.
+gateway_a_base_url = "https://<redacted-endpoint>"
+
+# Pin one upstream account so prompt-cache probes are comparable. Read it from
+# the `X-Account-Id` response header of a first call; never commit a real one.
+# cache_task_id = ""
+
+# Escape hatches, uncomment only if your gateway differs from the defaults.
+# base_url = "https://<redacted-endpoint>"
+# anthropic_messages_url = "https://<redacted-endpoint>"
+# responses_url = "https://<redacted-endpoint>"
+# gemini_base_url = "https://<redacted-endpoint>"
+# gemini_provider = "naci_default"
+
+# Any other environment variable, passed through verbatim.
+# [env]
+# HY_GATEWAY_C_MODELS = "my-model-a,my-model-b"

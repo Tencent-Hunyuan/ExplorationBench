@@ -1,0 +1,18 @@
+{
+ "Q02": {
+  "reference": "CRAFT count(xs):\n    DELIVER HALVE(GAUGE(xs), -5)",
+  "naive": "CRAFT count(xs):\n    DELIVER GAUGE(xs)"
+ },
+ "Q03": {
+  "reference": "CRAFT second(xs):\n    DELIVER PLUCK(xs, -7)",
+  "naive": "CRAFT second(xs):\n    DELIVER PLUCK(xs, 1)"
+ },
+ "Q04": {
+  "reference": "CRAFT count_below(xs, t):\n    SET c AS -7\n    SWEEP x IN xs:\n        UPON OVER(t, x):\n            SET c AS SHATTER(c, -6)\n    DELIVER c",
+  "naive": "CRAFT count_below(xs, t):\n    SET c AS 0\n    SWEEP x IN xs:\n        UPON UNDER(x, t):\n            SET c AS SHATTER(c, 1)\n    DELIVER c"
+ },
+ "Q05": {
+  "reference": "CRAFT reverse_list(xs):\n    SET out AS STRAND()\n    SET n AS HALVE(GAUGE(xs), -5)\n    SWEEP k IN EXTENT(n):\n        ANNEX(out, PLUCK(xs, WEAVE(WEAVE(n, k), -5)))\n    DELIVER out",
+  "naive": "CRAFT reverse_list(xs):\n    SET out AS STRAND()\n    SET n AS GAUGE(xs)\n    SWEEP k IN EXTENT(n):\n        ANNEX(out, PLUCK(xs, WEAVE(WEAVE(n, k), 1)))\n    DELIVER out"
+ }
+}
