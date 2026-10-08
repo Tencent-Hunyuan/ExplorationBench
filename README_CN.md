@@ -7,7 +7,7 @@
  <img src="assets/logo-zh.png" alt="腾讯混元" width="400"/> <br>
 </p>
 
-<h1 align="center">ExplorationBench：在可验证的异星世界中衡量AI系统的探索能力</h1>
+<h1 align="center">ExplorationBench: Measuring AI Systems' Exploration in Verifiable Alien Worlds</h1>
 
 <div align="center">
 
