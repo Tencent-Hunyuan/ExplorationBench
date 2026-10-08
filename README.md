@@ -1,3 +1,8 @@
+<p align="left">
+    <a href="README_CN.md">中文</a>&nbsp;｜&nbsp;English
+</p>
+<br>
+
 <p align="center">
  <img src="assets/logo-en.png" alt="Tencent Hy" width="400"/> <br>
 </p>
