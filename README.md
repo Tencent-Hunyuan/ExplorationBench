@@ -31,7 +31,9 @@
 
 ## 🔥 News
 
-- **2026.09**: 🎉 ExplorationBench released — two verifiable Alien Worlds with 55 discovery targets and 140 held-out tasks, and results for 10 frontier AI systems. [[Paper]](https://arxiv.org/abs/2609.30199) [[Website]](https://explorationbench.com) [[Blog]](https://explorationbench.com/blog/)
+- **2026.10.08**: 💻 This repository goes public with the evaluation code and the two public demo worlds.
+- **2026.09.30**: 📣 Tencent Hy announces ExplorationBench on X. [[Post]](https://x.com/TencentHunyuan/status/2105288808929558891)
+- **2026.09.24**: 🎉 The paper is released on arXiv — two verifiable Alien Worlds with 55 discovery targets and 140 held-out tasks, and results for 10 frontier AI systems. [[Paper]](https://arxiv.org/abs/2609.30199) [[Website]](https://explorationbench.com) [[Blog]](https://explorationbench.com/blog/)
 
 ## 📋 Contents
 

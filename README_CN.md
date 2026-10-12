@@ -31,7 +31,9 @@
 
 ## 🔥 新闻
 
-- **2026.09**：🎉 ExplorationBench发布：两个可验证的异星世界，共55个发现目标和140道留出题，并给出10个前沿AI系统的评测结果。[[论文]](https://arxiv.org/abs/2609.30199) [[网站]](https://explorationbench.com) [[博客]](https://explorationbench.com/blog/)
+- **2026.10.08**：💻 本仓库开源，包括评测代码和两个公开的演示世界。
+- **2026.09.30**：📣 腾讯混元在X上发布推文介绍ExplorationBench。[[推文]](https://x.com/TencentHunyuan/status/2105288808929558891)
+- **2026.09.24**：🎉 论文发布于arXiv：两个可验证的异星世界，共55个发现目标和140道留出题，并给出10个前沿AI系统的评测结果。[[论文]](https://arxiv.org/abs/2609.30199) [[网站]](https://explorationbench.com) [[博客]](https://explorationbench.com/blog/)
 
 ## 📋 目录
 
